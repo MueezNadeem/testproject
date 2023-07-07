@@ -40,6 +40,7 @@ dependencies:
   firebase_auth: ^4.6.3
   get: ^4.6.5
   shared_preferences: ^2.2.0
+  phone_number: ^2.0.1
 
 dev_dependencies:
   flutter_test:
