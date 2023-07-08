@@ -3,6 +3,9 @@ import 'package:testproject/common/firebase/get_user_chats.dart';
 import 'package:testproject/common/helpers/get_user_stored_pref.dart';
 import 'package:testproject/common/screens/registered_users.dart';
 
+import '../../../common/models/chat.dart';
+import '../widgets/message_list.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -11,16 +14,21 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<String>? chats = [];
+  List<Chat>? chats = [];
   String? userPhone = "";
   @override
   void initState() {
     super.initState();
-    getChats(userPhone).then((value) {
-      chats = value;
-    });
+
     getUserFromStoredPref().then((value) {
-      userPhone = value;
+      setState(() {
+        userPhone = value;
+      });
+      getChats(userPhone).then((value1) {
+        setState(() {
+          chats = value1;
+        });
+      });
     });
   }
 
@@ -28,22 +36,13 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: const Text('Home')),
-        body: Center(
-          child: ListView.builder(
-            itemCount: chats?.length,
-            itemBuilder: (context, index) {
-              return ListTile(
-                title: Text(chats![index]),
-              );
-            },
-          ),
-        ),
+        body: messageList(chats!, userPhone!),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const UsersList()));
           },
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
         ));
   }
 }

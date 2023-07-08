@@ -15,7 +15,9 @@ class _UsersListState extends State<UsersList> {
   void initState() {
     super.initState();
     getAllUsers().then((value) {
-      users = value;
+      setState(() {
+        users = value;
+      });
     });
   }
 

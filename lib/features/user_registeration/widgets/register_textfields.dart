@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:testproject/features/user_registeration/widgets/register_name.dart';
 import 'package:testproject/features/user_registeration/widgets/register_number.dart';
 
-Widget registerTextFields(name, phone) {
+Widget registerTextFields(
+    TextEditingController name, TextEditingController phone) {
   return Padding(
     padding: const EdgeInsets.fromLTRB(0, 120, 0, 0),
     child: Column(

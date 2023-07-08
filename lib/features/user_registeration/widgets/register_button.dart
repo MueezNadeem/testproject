@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:testproject/common/firebase/save_user_to_firebase.dart';
 import 'package:testproject/common/helpers/save_user_stored_pref.dart';
-import 'package:testproject/common/screens/home_screen.dart';
+import 'package:testproject/features/home_screen/screens/home_screen.dart';
 
 Widget proceedButton(context, bool flag, name, phone) {
   {
