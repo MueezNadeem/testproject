@@ -1,6 +1,12 @@
 class Chat {
-  late final String id;
-  late final String lastMessage;
-  late final int unreadMessages;
-  late final String recipient;
+  late String id;
+  late String lastMessage;
+  late int unreadMessages;
+  late String recipient;
+  Chat() {
+    id = "";
+    lastMessage = "";
+    unreadMessages = 0;
+    recipient = "";
+  }
 }

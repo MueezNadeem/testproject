@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:testproject/common/firebase/get_chat_messages.dart';
 import 'package:testproject/features/message_user/widgets/chat_app_bar.dart';
 import 'package:testproject/features/message_user/widgets/chat_bottom_bar.dart';
 import 'package:testproject/features/message_user/widgets/chat_list_messages.dart';
@@ -24,6 +25,11 @@ class _UserMessageState extends State<UserMessage> {
     super.initState();
     currentUser = widget.user;
     currentChat = widget.chat;
+    getMessages(currentChat!.id).then((value) {
+      setState(() {
+        messages = value;
+      });
+    });
   }
 
   @override
@@ -31,6 +37,8 @@ class _UserMessageState extends State<UserMessage> {
     return Scaffold(
         appBar: chatAppBar(currentChat!),
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [chatListMessage(messages, currentUser!), chatBottomBar()],
         ));
   }

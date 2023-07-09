@@ -2,17 +2,25 @@ import 'package:flutter/material.dart';
 
 Widget chatBottomBar() {
   return Row(
+    mainAxisAlignment: MainAxisAlignment.center,
     children: [
       const Padding(
         padding: EdgeInsets.all(8),
-        child: TextField(
-          controller: null,
-          decoration: InputDecoration(hintText: "Enter Message"),
+        child: SizedBox(
+          width: 280,
+          height: 35,
+          child: TextField(
+            controller: null,
+            decoration: InputDecoration(
+                labelText: "Enter Message",
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(8)))),
+          ),
         ),
       ),
       Padding(
           padding: const EdgeInsets.all(8),
-          child: FilledButton(
+          child: ElevatedButton(
             onPressed: () {},
             child: const Text("Send"),
           ))
