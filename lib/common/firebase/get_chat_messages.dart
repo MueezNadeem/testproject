@@ -17,7 +17,7 @@ Future<List<Message>> getMessages(String chatID) async {
       message.id = messageID;
       message.content = data['content'].toString();
       message.senderID = data['senderId'].toString();
-      message.timestamp = data['timestamp'] as int;
+      message.timestamp = data['timestamp'].toString();
 
       return message;
     }).toList();

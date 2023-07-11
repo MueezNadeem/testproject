@@ -1,29 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:testproject/features/user_registeration/widgets/register_appbar.dart';
-
 import '../../../common/firebase/save_user_to_firebase.dart';
 import '../../../common/helpers/save_user_stored_pref.dart';
-import '../../home_screen/screens/home_screen.dart';
+import '../controller/verify_phone_num.dart';
+
+import '../widgets/register_appbar.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
+
   @override
-  State<RegisterPage> createState() => _RegisterPageState();
+  RegisterPageState createState() => RegisterPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class RegisterPageState extends State<RegisterPage> {
   late TextEditingController name;
   late TextEditingController phone;
-  late bool text;
-  late bool phone_;
 
   @override
   void initState() {
     super.initState();
     name = TextEditingController();
     phone = TextEditingController();
-    text = false;
-    phone_ = false;
   }
 
   @override
@@ -75,10 +72,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 } else {
                   await saveUsertoFireBase(name.text, phone.text);
                   await saveUsertoStoredPref(name.text, phone.text);
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const HomePage()));
+                  verifyPhoneNumber(phone.text, context);
                 }
               },
               style: const ButtonStyle(

@@ -5,9 +5,9 @@ import 'chat_recipient_message_item.dart';
 import 'chat_sender_message_item.dart';
 
 Widget chatListMessage(List<Message> messages, String userPhone) {
-  return SizedBox(
-    height: 200,
+  return Expanded(
     child: ListView.builder(
+      reverse: true,
       itemCount: messages.length,
       itemBuilder: (context, index) {
         if (messages[index].senderID == userPhone) {
